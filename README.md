@@ -1,101 +1,57 @@
 # Notion-Editor-Clone
-# 📝 Notion Style Editor (JavaScript)
+📝 Notion-Style Block Editor
+🚀 Project Overview
+A lightweight, block-based text editor built from scratch using Vanilla JavaScript. Unlike traditional text areas, this editor treats every line as an independent "block" element, mimicking the core experience of modern productivity tools like Notion.
 
-## 🚀 Project Overview
+✨ Features (Latest Update)
+➕ Dynamic Block Creation: Pressing Enter generates a new editable block and shifts focus instantly.
 
-This project is a **Notion-like text editor** built using **Vanilla JavaScript**.
-It allows users to create and manage content in a **block-based structure**, similar to modern editors like Notion.
+🗑️ Smart Deletion: Pressing Backspace on an empty block deletes it and moves the cursor to the previous block.
 
----
+🎯 Advanced Cursor Management: Implemented Selection & Range API to ensure the cursor always lands at the end of the text when moving between blocks.
 
-## ✨ Features
+🧱 ContentEditable Architecture: Leverages native browser capabilities for a seamless typing experience without heavy libraries.
 
-* ➕ Create new blocks using the **Enter key**
-* 🎯 Auto focus on newly created block
-* 🧱 Block-based editing system
-* ⚡ Smooth and minimal user experience
+🛠️ Technologies & Concepts
+JavaScript (ES6+): Arrow functions, event listeners, and DOM manipulation.
 
----
+DOM Traversal: Using previousElementSibling and closest() for precise element targeting.
 
-## 🛠️ Technologies Used
+Selection & Range API: Managing low-level browser selection to control cursor positioning.
 
-* HTML5
-* CSS3
-* Vanilla JavaScript (ES6)
+Event Handling: Overriding default browser behaviors (e.preventDefault()) to create a custom UX.
 
----
+💡 Technical Deep Dive: The Range API
+One of the biggest challenges in building a block editor is focus management. When a block is deleted, simply calling .focus() on the previous block puts the cursor at the start. To fix this, I implemented a custom setCursorToEnd utility:
 
-## 📂 Project Structure
+JavaScript
+function setCursorToEnd(el) {
+    const range = document.createRange();
+    const selection = window.getSelection();
+    
+    range.selectNodeContents(el);
+    range.collapse(false); // Move the range to the very end of the content
+    
+    selection.removeAllRanges();
+    selection.addRange(range);
+}
+📂 Project Structure
+/notion-clone
+  ├── index.html   # Semantic structure & editor container
+  ├── style.css    # Minimalist Notion-style aesthetics
+  └── script.js    # Core logic (Enter/Backspace/Cursor control)
+📌 Roadmap & Progress
+[x] Basic UI & Block Styling
 
-```
-/project-folder
-  ├── index.html
-  ├── style.css
-  └── script.js
-```
+[x] Enter key logic (New block creation)
 
----
+[x] Backspace logic (Block deletion)
 
-## ⚙️ How It Works
+[x] Precision Cursor Positioning (Range API)
 
-* The editor listens for **keyboard events**
-* When the **Enter key** is pressed:
+[ ] Next: Slash Commands (/h1, /bullet)
 
-  * Default behavior is prevented
-  * A new editable block is created
-  * The new block is inserted after the current block
-  * Focus automatically shifts to the new block
+[ ] Next: LocalStorage (Save progress automatically)
 
----
-
-## 💡 Key Code Logic
-
-```js
-editor.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-        e.preventDefault();
-
-        let block = e.target.closest(".block");
-
-        const newdiv = document.createElement("div");
-        newdiv.className = "block";
-        newdiv.contentEditable = "true";
-
-        block.after(newdiv);
-        newdiv.focus();
-    }
-});
-```
-
----
-
-## 🔥 Future Improvements
-
-* ⌨️ Backspace to delete empty blocks
-* 🎨 Slash commands (/h1, /list)
-* 💾 Save data using LocalStorage
-* 🧠 Advanced cursor management
-* 🧩 Block types (heading, list, code)
-
----
-
-## 📌 Learning Outcome
-
-This project helps in understanding:
-
-* DOM Manipulation
-* Event Handling
-* Dynamic UI creation
-* Block-based editor architecture
-
----
-
-## 👨‍💻 Author
-
-**Hunain Shahid**
-
----
-
-## ⭐ Contribution
-
-Feel free to fork this project and improve it!
+👨‍💻 Author
+Hunain Shahid
