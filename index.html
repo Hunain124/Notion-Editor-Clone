@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notion Editor Clone</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f7f6f3;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 80px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .block {
+      outline: none;
+      font-size: 16px;
+      padding: 8px 0;
+      line-height: 1.5;
+      cursor: text;
+    }
+
+    .block:focus {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    .placeholder:empty:before {
+      content: attr(data-placeholder);
+      color: #aaa;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div id="editor">
+      <div class="block placeholder" contenteditable="true" data-placeholder="Type '/' for commands..."></div>
+    </div>
+  </div>
+<script src="notion.js"></script>
+</body>
+</html>
