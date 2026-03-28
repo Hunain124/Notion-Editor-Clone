@@ -1,32 +1,57 @@
    body {
-      margin: 0;
-      font-family: sans-serif;
-      background: #f7f6f3;
-    }
+     margin: 0;
+     font-family: sans-serif;
+     background: #f7f6f3;
+   }
 
-    .container {
-      max-width: 700px;
-      margin: 80px auto;
-      background: white;
-      padding: 40px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
+   .container {
+     max-width: 700px;
+     margin: 80px auto;
+     background: white;
+     padding: 40px;
+     border-radius: 10px;
+     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+   }
 
-    .block {
-      outline: none;
-      font-size: 16px;
-      padding: 8px 0;
-      line-height: 1.5;
-      cursor: text;
-    }
+   .block {
+     outline: none;
+     font-size: 16px;
+     padding: 8px 0;
+     line-height: 1.5;
+     cursor: text;
+   }
 
-    .block:focus {
-      background: #f1f1f1;
-      border-radius: 5px;
-    }
+   .block:focus {
+     background: #f1f1f1;
+     border-radius: 5px;
+   }
 
-    .placeholder:empty:before {
-      content: attr(data-placeholder);
-      color: #aaa;
-    }
+   .placeholder:empty:before {
+     content: attr(data-placeholder);
+     color: #aaa;
+   }
+
+   .h1-block {
+     font-size: 32px;
+     font-weight: bold;
+     color: #333;
+   }
+
+   .p {
+     font-size: 16px;
+     color: #333;
+   }
+
+   .li-block {
+     display: list-item;
+     list-style-type: disc;
+     margin-left: 25px;
+     /* Bullet ke liye jagah */
+     padding-left: 5px;
+   }
+
+   /* Agar block empty ho toh bullet ke saath placeholder dikhe */
+   .li-block:empty::before {
+     content: "List item";
+     color: #ccc;
+   }
