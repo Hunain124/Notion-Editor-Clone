@@ -1,34 +1,48 @@
 📝 Neon-Notion: Minimalist Block Editor (v1.5)
 🚀 Project Overview
-A high-tech, dark-themed block editor inspired by Notion’s architecture and Visual Lab’s minimalist aesthetic. Built with Vanilla JavaScript, this editor treats every line as a modular data block with real-time command processing.
+A high-tech, dark-themed block editor inspired by Notion’s modular architecture and the Visual Lab minimalist aesthetic. Built with Vanilla JavaScript, this editor treats every line as an independent data block with real-time command processing and persistent storage.
 
 ✨ Features (Latest Update)
-🌑 Cyberpunk UI: Deep black background with Electric Neon Green (#39FF14) accents for a premium developer feel.
+🌑 Cyberpunk UI: Deep black background with Electric Neon Green (#39FF14) accents and glassmorphism headers.
 
-💾 Full Persistence: Automatically saves both Page Title and Editor Content to localStorage. Your workspace is exactly how you left it after a refresh.
+💾 Full Persistence: Automatically saves both Page Title and Editor Content to localStorage.
 
-⌨️ Smart Slash Commands: * /h1 — Neon Bold Heading
+⌨️ Slash Commands: Transform blocks instantly using /h1, /li, or /p followed by a space.
 
-/li — Square Tech-style Bullets
+🎯 Precision Focus: Custom Selection & Range API ensures the cursor never loses its place during block transitions.
 
-/p  — Standard Paragraph
+🔘 Intelligent Lists: Automatic bullet generation on Enter and "Smart Exit" logic for empty list items.
 
-🎯 Precision Focus: Custom Selection & Range API ensures the cursor never loses its place during block deletion or creation.
+🛠️ Technologies & Concepts
+JavaScript (ES6+): Event delegation and dynamic DOM manipulation.
 
-🔘 Intelligent Lists: Supports auto-continuation of bullets and "Smart Exit" (Pressing Enter on an empty bullet reverts it to a normal block).
+Web Storage API: Managing persistent state across browser sessions.
 
-🛠️ Technical Deep Dive
-Glassmorphism: Sticky header with backdrop-filter: blur for a modern app feel.
+Selection & Range API: Low-level browser control for cursor placement.
 
-Event Delegation: Efficiently manages thousands of potential blocks using a single event listener on the parent container.
+CSS Glassmorphism: Using backdrop-filter and rgba for a premium UI feel.
 
-Data Persistence Logic:
+💡 Technical Deep Dive: The Storage Engine
+To ensure no data is lost, I implemented a dual-key storage system. Every input event triggers a sync between the DOM and the browser's local database.
 
 JavaScript
 function saveData() {
+    // Saves the structured HTML of the editor
     localStorage.setItem("notionData", editor.innerHTML);
+    
+    // Saves the specific Page Title text
+    const pageTitle = document.querySelector(".page-title");
     localStorage.setItem("notionTitle", pageTitle.innerText);
 }
+
+// Restoration on Page Load
+window.onload = () => {
+    const savedData = localStorage.getItem("notionData");
+    const savedTitle = localStorage.getItem("notionTitle");
+    
+    if (savedData) editor.innerHTML = savedData;
+    if (savedTitle) document.querySelector(".page-title").innerText = savedTitle;
+};
 📂 Project Structure
 /notion-neon-clone
   ├── index.html   # Semantic structure with Neon Header
@@ -37,17 +51,17 @@ function saveData() {
 📌 Roadmap & Progress
 [x] Basic UI & Block Styling
 
-[x] Enter/Backspace Logic
+[x] Enter/Backspace Logic with Range API
 
 [x] Slash Commands (/h1, /p, /li)
 
-[x] Dark Neon Theme Integration
+[x] Dark Neon "Visual Lab" Theme
 
-[x] Page Title Persistence
+[x] Page Title Persistence Logic
 
-[ ] Next: Multi-color commands (e.g., /red, /blue)
+[ ] Next: Export to Markdown / PDF
 
-[ ] Next: Export to PDF/Markdown
+[ ] Next: Draggable Blocks (Reordering)
 
 👨‍💻 Author
 Hunain Shahid — Digital Production Specialist | Web Developer
