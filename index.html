@@ -2,18 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Notion Editor Clone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notion Clone | Workspace</title>
   <link rel="stylesheet" href="notion.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
 </head>
-
 <body>
 
-  <div class="container">
-    <div id="editor">
-      <div class="block placeholder" contenteditable="true" data-placeholder="Type '/' for commands..."></div>
+  <div class="app-container">
+    <header class="editor-header">
+      <div class="status-bar">
+        <span class="status-dot"></span> Saved to Cloud
+      </div>
+    </header>
+
+    <main class="container">
+      <h1 class="page-title" contenteditable="true" data-placeholder="Untitled">Untitled</h1>
+      
+      <div id="editor">
+        <div class="block" contenteditable="true" data-placeholder="Press '/' for commands..."></div>
+      </div>
+    </main>
+
+    <div class="help-tip">
+      Try <code>/h1</code>, <code>/li</code>, or <code>/p</code>
     </div>
   </div>
-<script src="notion.js"></script>
+
+  <script src="notion.js"></script>
 </body>
 </html>

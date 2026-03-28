@@ -1,23 +1,53 @@
-#📝 Notion-Style Block Editor (Vanilla JS)
-#🚀 Project Overview
-A lightweight, block-based text editor built from scratch using Vanilla JavaScript. This project moves away from traditional textareas to a modern, block-based architecture where every line is an independent, manageable element—mimicking the core experience of tools like Notion.
+📝 Neon-Notion: Minimalist Block Editor (v1.5)
+🚀 Project Overview
+A high-tech, dark-themed block editor inspired by Notion’s architecture and Visual Lab’s minimalist aesthetic. Built with Vanilla JavaScript, this editor treats every line as a modular data block with real-time command processing.
 
-#✨ Features (Latest Update)
-➕ Dynamic Block Creation: Pressing Enter generates a new editable block and shifts focus instantly.
+✨ Features (Latest Update)
+🌑 Cyberpunk UI: Deep black background with Electric Neon Green (#39FF14) accents for a premium developer feel.
 
-#🗑️ Smart Deletion: Pressing Backspace on an empty block deletes it and moves the cursor to the previous block.
+💾 Full Persistence: Automatically saves both Page Title and Editor Content to localStorage. Your workspace is exactly how you left it after a refresh.
 
-#🎯 Advanced Cursor Management: Uses Selection & Range API to ensure the cursor always lands at the end of the text during block transitions.
+⌨️ Smart Slash Commands: * /h1 — Neon Bold Heading
 
-#⌨️ Slash Commands (New): Transform blocks on the fly! Typing /h1 or /p followed by a space instantly changes the block type and styling.
+/li — Square Tech-style Bullets
 
-🧱 Block-based Architecture: Pure DOM manipulation for a modular and scalable editor experience.
+/p  — Standard Paragraph
 
-#🛠️ Technologies & Concepts
-JavaScript (ES6+): Arrow functions, event delegation, and input handling.
+🎯 Precision Focus: Custom Selection & Range API ensures the cursor never loses its place during block deletion or creation.
 
-DOM Traversal: Efficient use of previousElementSibling and closest().
+🔘 Intelligent Lists: Supports auto-continuation of bullets and "Smart Exit" (Pressing Enter on an empty bullet reverts it to a normal block).
 
-Selection & Range API: Low-level browser API to control cursor focus and placement.
+🛠️ Technical Deep Dive
+Glassmorphism: Sticky header with backdrop-filter: blur for a modern app feel.
 
-CSS Custom Attributes: Using data-placeholder with pseudo-elements for a clean UI.
+Event Delegation: Efficiently manages thousands of potential blocks using a single event listener on the parent container.
+
+Data Persistence Logic:
+
+JavaScript
+function saveData() {
+    localStorage.setItem("notionData", editor.innerHTML);
+    localStorage.setItem("notionTitle", pageTitle.innerText);
+}
+📂 Project Structure
+/notion-neon-clone
+  ├── index.html   # Semantic structure with Neon Header
+  ├── notion.css   # Dark/Neon styling & Glassmorphism
+  └── notion.js    # Core logic (Enter, Backspace, Storage, Commands)
+📌 Roadmap & Progress
+[x] Basic UI & Block Styling
+
+[x] Enter/Backspace Logic
+
+[x] Slash Commands (/h1, /p, /li)
+
+[x] Dark Neon Theme Integration
+
+[x] Page Title Persistence
+
+[ ] Next: Multi-color commands (e.g., /red, /blue)
+
+[ ] Next: Export to PDF/Markdown
+
+👨‍💻 Author
+Hunain Shahid — Digital Production Specialist | Web Developer

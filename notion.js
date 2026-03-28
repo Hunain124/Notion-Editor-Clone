@@ -1,76 +1,107 @@
+/**
+ * Custom function to move the cursor to the end of a block
+ * (Essential for smooth Backspace behavior)
+ */
 function setCursorToEnd(el) {
     const range = document.createRange();
     const selection = window.getSelection();
     range.selectNodeContents(el);
     range.collapse(false);
-
     selection.removeAllRanges();
     selection.addRange(range);
 }
 
-let editor = document.querySelector("#editor");
+const editor = document.querySelector("#editor");
 
+// --- KEYDOWN EVENTS (Enter & Backspace Logic) ---
 editor.addEventListener("keydown", (e) => {
+    let currentBlock = e.target.closest(".block");
+    if (!currentBlock) return;
+
     if (e.key === "Enter") {
+        
+        if (currentBlock.classList.contains("li-block") && currentBlock.innerText.trim() === "") {
+            e.preventDefault();
+        
+            currentBlock.className = "block";
+            currentBlock.setAttribute("data-placeholder", "Type '/' for commands...");
+            return;
+        }
+
         e.preventDefault();
 
         const newdiv = document.createElement("div");
-        newdiv.className = "block";
         newdiv.contentEditable = "true";
 
-        e.target.closest(".block").after(newdiv);
+        if (currentBlock.classList.contains("li-block")) {
+            newdiv.className = "block li-block";
+            newdiv.setAttribute("data-placeholder", "List item");
+        } else {
+            newdiv.className = "block";
+            newdiv.setAttribute("data-placeholder", "Type '/' for commands...");
+        }
+
+        currentBlock.after(newdiv);
         newdiv.focus();
 
     } else if (e.key === "Backspace") {
-        let block = e.target.closest(".block");
-        let prevBlock = block.previousElementSibling;
+        let prevBlock = currentBlock.previousElementSibling;
 
-        if (block.innerText.trim().length == 0 && prevBlock) {
+        if (currentBlock.innerText.trim().length === 0 && prevBlock) {
             e.preventDefault();
-
-            block.remove();
+            currentBlock.remove();
             prevBlock.focus();
             setCursorToEnd(prevBlock);
-
         }
     }
 });
 
+
 editor.addEventListener("input", (e) => {
     let block = e.target.closest(".block");
+    if (!block) return;
+    
     let text = block.innerText;
 
     if (text.startsWith("/h1")) {
-        block.innerText = " ";
-        block.classList.add("h1-block");
-        block.setAttribute("placeholder", "H1 Heading");
-
-    } else if (text.startsWith("/p")) {
-        block.innerText = " ";
-        block.classList.add("p");
-        block.setAttribute("placeholder", "Paragraph");
-
-    } else if (text.startsWith("/li")) {
-        block.innerText = " ";
-        block.classList.add("li-block");
-        block.setAttribute("placeholder", "List item");
+        block.innerText = ""; 
+        block.className = "block h1-block";
+        block.setAttribute("data-placeholder", "H1 Heading");
+    } 
+    else if (text.startsWith("/p")) {
+        block.innerText = "";
+        block.className = "block"; 
+        block.setAttribute("data-placeholder", "Type '/' for commands...");
+    } 
+    else if (text.startsWith("/li")) {
+        block.innerText = "";
+        block.className = "block li-block";
+        block.setAttribute("data-placeholder", "List item");
     }
+    saveData();
 });
 
-if (e.key === "Enter") {
-    e.preventDefault();
-    let currentBlock = e.target.closest(".block");
+const titleElement = document.querySelector(".page-title");
 
-    const newdiv = document.createElement("div");
-    newdiv.contentEditable = "true";
+titleElement.addEventListener("input", () => {
+    saveData();
+});
 
-    // Check karo: Agar current block list hai, toh naya bhi list banao
-    if (currentBlock.classList.contains("li-block")) {
-        newdiv.className = "block li-block";
-    } else {
-        newdiv.className = "block";
-    }
-
-    currentBlock.after(newdiv);
-    newdiv.focus();
+function saveData(){
+    localStorage.setItem("notionData", editor.innerHTML);
+    const pageTitle = document.querySelector(".page-title");
+    localStorage.setItem("notionTitle", pageTitle.innerText);
 }
+
+window.addEventListener("load" , () =>{
+    const saveData = localStorage.getItem("notionData");
+    if(saveData){
+        editor.innerHTML = saveData;
+    }
+    const savedTitle = localStorage.getItem("notionTitle");
+    const pageTitle = document.querySelector(".page-title");
+    
+    if (savedTitle) {
+        pageTitle.innerText = savedTitle;
+    }
+})
