@@ -35,7 +35,7 @@ function saveData() {
     localStorage.setItem("notionTitle", pageTitle.innerText);
 }
 
-// Restoration on Page Load Js
+// Restoration on Page Load Java script
 window.onload = () => {
     const savedData = localStorage.getItem("notionData");
     const savedTitle = localStorage.getItem("notionTitle");
