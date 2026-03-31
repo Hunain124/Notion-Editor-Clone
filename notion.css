@@ -179,3 +179,37 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-neon);
 }
+
+.logout-link {
+    background: transparent;
+    border: 1px solid #ff4444; /* Red for Logout */
+    color: #ff4444;
+    padding: 2px 8px;
+    margin-left: 15px;
+    cursor: pointer;
+    font-size: 11px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.logout-link:hover {
+    background: #ff4444;
+    color: black;
+    box-shadow: 0 0 10px rgba(255, 68, 68, 0.5);
+}
+.status-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Sab kuch right side par rakhe ga */
+    padding: 10px 20px;
+    gap: 10px;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-neon);
+    border-radius: 50%;
+    box-shadow: 0 0 5px var(--accent-neon);
+}

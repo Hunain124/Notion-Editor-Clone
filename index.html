@@ -5,16 +5,46 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Notion Clone | Workspace</title>
   <link rel="stylesheet" href="notion.css">
+  <link rel="stylesheet" href="login-sign_up.css">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📝</text></svg>">
 </head>
 <body>
+<header class="editor-header">
+    <div class="status-bar">
+        <span class="status-dot"></span> 
+        <span id="sync-text">Saved to Cloud</span>
+        <button id="logout-btn" class="logout-link">Logout</button>
+    </div>
+</header>
+
+  <div id="auth-overlay" class="auth-container">
+  <div class="auth-card">
+    <h2 id="auth-title">System Access</h2>
+    <p id="auth-subtitle">Enter credentials to sync with Cloud</p>
+    
+    <form id="auth-form">
+      <div class="input-group">
+        <input type="email" id="email" placeholder="Email Address" required>
+      </div>
+      <div class="input-group">
+        <input type="password" id="password" placeholder="Password" required>
+      </div>
+      <button type="submit" id="auth-btn">Initialize Session</button>
+    </form>
+    
+    <p class="toggle-text">
+      <span id="toggle-msg">Don't have an account?</span> 
+      <a href="#" id="toggle-auth">Create Identity</a>
+    </p>
+  </div>
+  </div>
 
   <div class="app-container">
-    <header class="editor-header">
+    <!-- <header class="editor-header">
       <div class="status-bar">
         <span class="status-dot"></span> Saved to Cloud
       </div>
-    </header>
+    </header> -->
 
     <main class="container">
       <h1 class="page-title" contenteditable="true" data-placeholder="Untitled">Untitled</h1>
@@ -30,5 +60,7 @@
   </div>
 
   <script src="notion.js"></script>
+  <script src="login-sign_up.js"></script>
+
 </body>
 </html>
