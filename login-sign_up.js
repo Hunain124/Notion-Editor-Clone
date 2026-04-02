@@ -36,7 +36,7 @@ authForm.addEventListener("submit", async (e) => {
     const password = document.querySelector("#password").value;
 
     if (!email || password.length < 6) {
-        alert("Bhai, details sahi dalo (Password min 6 chars)!");
+        alert("Enter Right Password min 6 chars!");
         return;
     }
 
@@ -59,7 +59,7 @@ const handleAuth = async (isLogin, email, password) => {
 
         if (data.success) {
             if (!isLogin) {
-                alert("Account Created! Ab login karo jani.");
+                alert("Account Created! Login Now");
                 window.location.reload(); 
             } else {
                 localStorage.setItem("isLoggedIn", "true");
@@ -71,7 +71,7 @@ const handleAuth = async (isLogin, email, password) => {
         }
     } catch (err) {
         console.error(err);
-        alert("Server band hai! Pehle terminal mein 'node server.js' chalao.");
+        alert("Server is closed connect it first");
     }
 };
 
@@ -79,7 +79,7 @@ const handleAuth = async (isLogin, email, password) => {
 const logoutBtn = document.querySelector("#logout-btn");
 if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-        if (confirm("Jani, session khatam kar dein?")) {
+        if (confirm("Finished the Session?")) {
             localStorage.removeItem("isLoggedIn");
             localStorage.removeItem("userEmail");
             window.location.reload();
