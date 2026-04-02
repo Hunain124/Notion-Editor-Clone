@@ -25,7 +25,7 @@ CSS Glassmorphism: Using backdrop-filter and rgba for a premium UI feel.
 💡 Technical Deep Dive: The Storage Engine
 To ensure no data is lost, I implemented a dual-key storage system. Every input event triggers a sync between the DOM and the browser's local database.
 
-JavaScript
+Js
 function saveData() {
     // Saves the structured HTML of the editor
     localStorage.setItem("notionData", editor.innerHTML);
