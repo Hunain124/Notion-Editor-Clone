@@ -59,6 +59,8 @@ window.onload = () => {
 
 [x] Page Title Persistence Logic
 
+Add more Features on this web application
+
 [ ] Next: Export to Markdown / PDF
 
 [ ] Next: Draggable Blocks (Reordering)
