@@ -59,7 +59,7 @@ window.onload = () => {
 
 [x] Page Title Persistence Logic
 
-Add more Features on this web application
+Add more Features on this web applications
 
 [ ] Next: Export to Markdown / PDF
 
